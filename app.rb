@@ -6,8 +6,6 @@ require 'sinatra/activerecord'
 require './environments'
 
 enable :sessions
-set :server , 'webrick'
-set :port, 3000
 set :bind, '0.0.0.0'
 
 class Post < ActiveRecord::Base
