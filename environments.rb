@@ -2,7 +2,7 @@ configure :development do
  set :database, 'sqlite:///dev.db'
  set :show_exceptions, true
 end
-
+LAUNCHY_DEBUG=true
 configure :production do
  db = URI.parse(ENV['DATABASE_URL'] || 'postgres:///localhost/mydb')
 
