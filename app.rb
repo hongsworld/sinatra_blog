@@ -6,6 +6,9 @@ require 'sinatra/activerecord'
 require './environments'
 
 enable :sessions
+set :server , 'webrick'
+set :port, 3000
+set :bind, '0.0.0.0'
 
 class Post < ActiveRecord::Base
   validates :title, presence: true, length: { minimum: 5 }
@@ -19,16 +22,17 @@ get "/" do
   erb :"posts/index"
 end
 
-get "/posts/:id" do
- @post = Post.find(params[:id])
- @title = @post.title
- erb :"posts/view"
-end
 
 get "/posts/create" do
  @title = "Create post"
  @post = Post.new
  erb :"posts/create"
+end
+
+get "/posts/:id" do
+ @post = Post.find(params[:id])
+ @title = @post.title
+ erb :"posts/view"
 end
 
 post "/posts" do
